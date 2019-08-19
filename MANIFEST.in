@@ -1,1 +1,1 @@
-include wagtailuiplus/*.css
+include wagtailuiplus/static/css/wagtailuiplus.css

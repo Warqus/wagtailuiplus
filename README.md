@@ -8,7 +8,7 @@ This Wagtail app provides several ui improvements to the Wagtail editor interfac
 Preview
 -------
 
-![Screenshot](screenshot.png)
+![Screenshot](https://raw.githubusercontent.com/davidcondenl/wagtailuiplus/master/screenshot.png)
 
 Install
 -------

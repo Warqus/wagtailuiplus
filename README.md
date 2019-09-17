@@ -4,16 +4,16 @@
 
 This Wagtail app provides several ui improvements to the Wagtail editor interface.
 
-- Collapsable panels
- - Click on the panel header to collapse/expand the panel
- - Set the default collapsed state
- - Supported panel types: `MultiFieldPanel` and `StreamFieldPanel`
+### Collapsable panels
+- Click on the panel header to collapse/expand the panel
+- Set the default collapsed state
+- Supported panel types: `MultiFieldPanel` and `StreamFieldPanel`
 
-- StreamField UI improvements
- - Added border around blocks
- - Added spacing between blocks
- - Permanently visible add buttons
- - Use more of the available space for stream blocks
+### StreamField UI improvements
+- Added border around blocks
+- Added spacing between blocks
+- Permanently visible add buttons
+- Use more of the available space for stream blocks
 
 ## Compatibility
 - Wagtail 2.5+

@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name='wagtailuiplus',
-    version='1.0.0',
+    version='1.1.0',
     description=(
         'This Wagtail app provides several ui improvements to the Wagtail '
         'editor interface.'),

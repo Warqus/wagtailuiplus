@@ -1,24 +1,49 @@
-Wagtail UI Plus
-============================
+# Wagtail UI Plus
+
+## Features
+
 This Wagtail app provides several ui improvements to the Wagtail editor interface.
 
-- Improved UI for StreamFields
-- Improved UI for StreamBlocks nested inside StreamFields
+- Collapsable panels
+ - Click on the panel header to collapse/expand the panel
+ - Set the default collapsed state
+ - Supported panel types: `MultiFieldPanel` and `StreamFieldPanel`
 
-Preview
--------
+- StreamField UI improvements
+ - Added border around blocks
+ - Added spacing between blocks
+ - Permanently visible add buttons
+ - Use more of the available space for stream blocks
 
-![Screenshot](https://raw.githubusercontent.com/davidcondenl/wagtailuiplus/master/screenshot.png)
+## Compatibility
+- Wagtail 2.5+
 
-Install
--------
+## Install
 
 - `pip install wagtailuiplus`
 - Add `wagtailuiplus` to your installed apps
 
-Example
--------
-The following code was used in a `models.py` file to generate the above screenshot.
+## Examples
+
+### Collapsable panels
+
+The panels automatically become collapsable. To set the initial collapsed state of panels, add the `wagtailuiplus__panel--collapsed` classname to the panel, for example:
+
+```
+class HomePage(Page):
+    content_panels = [
+        MultiFieldPanel([
+            FieldPanel('title'),
+        ], 'My multi field panel', classname='wagtailuiplus__panel--collapsed'),
+    ]
+```
+
+![Screenshot](https://raw.githubusercontent.com/davidcondenl/wagtailuiplus/master/screenshot1.png)
+
+### StreamField UI improvements
+
+The UI improvements automatically apply. Just create your StreamField as usual, for example:
+
 ```
 from wagtail.admin.edit_handlers import StreamFieldPanel
 from wagtail.core.blocks import (
@@ -69,5 +94,5 @@ class HomePage(Page):
     content_panels = [
         StreamFieldPanel('my_stream_field'),
     ]
-
 ```
+![Screenshot](https://raw.githubusercontent.com/davidcondenl/wagtailuiplus/master/screenshot2.png)

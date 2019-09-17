@@ -1,4 +1,6 @@
+.DS_Store
 build/
 dist/
 env/
 wagtailuiplus.egg-info/
+__pycache__/

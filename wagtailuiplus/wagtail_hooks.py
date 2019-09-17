@@ -9,3 +9,10 @@ def editor_css():
         '<link rel="stylesheet" href="{}">',
         static('css/wagtailuiplus.css')
     )
+
+@hooks.register('insert_editor_js')
+def editor_js():
+    return format_html(
+        '<script src="{}"></script>',
+        static('js/wagtailuiplus.js')
+    )

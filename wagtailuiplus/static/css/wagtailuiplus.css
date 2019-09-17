@@ -1,3 +1,28 @@
+/* Collapsable panels */
+.object > h2 {
+  cursor: pointer;
+}
+.object > h2 > label {
+  cursor: pointer;
+}
+.object.wagtailuiplus__panel--collapsed {
+  height: 53px;
+}
+.object.wagtailuiplus__panel--collapsed:last-child {
+  height: 90px;
+}
+.object.wagtailuiplus__panel--collapsed > .object-layout {
+  display: none ;
+}
+.object.wagtailuiplus__panel--collapsed > h2 label:before,
+.object.wagtailuiplus__panel--collapsed > h2:before {
+  -webkit-transform:rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
 /* Stream field container */
 .object.block_field.stream-field > .object-layout > .object-layout_big-part > fieldset {
   padding-top: 40px

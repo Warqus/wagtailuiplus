@@ -1,15 +1,13 @@
 # Wagtail UI Plus
 
-## Features
-
 This Wagtail app provides several ui improvements to the Wagtail editor interface.
 
-### Collapsable panels
+**Collapsable panels**
 - Click on the panel header to collapse/expand the panel
 - Set the default collapsed state
 - Supported panel types: `MultiFieldPanel` and `StreamFieldPanel`
 
-### StreamField UI improvements
+**StreamField UI improvements**
 - Added border around blocks
 - Added spacing between blocks
 - Permanently visible add buttons
@@ -18,14 +16,14 @@ This Wagtail app provides several ui improvements to the Wagtail editor interfac
 ## Compatibility
 - Wagtail 2.5+
 
-## Install
+## Installation
 
 - `pip install wagtailuiplus`
 - Add `wagtailuiplus` to your installed apps
 
-## Examples
+## Usage
 
-### Collapsable panels
+**Collapsable panels**
 
 The panels automatically become collapsable. To set the initial collapsed state of panels, add the `wagtailuiplus__panel--collapsed` classname to the panel, for example:
 
@@ -40,7 +38,7 @@ class HomePage(Page):
 
 ![Screenshot](https://raw.githubusercontent.com/davidcondenl/wagtailuiplus/master/screenshot1.png)
 
-### StreamField UI improvements
+**StreamField UI improvements**
 
 The UI improvements automatically apply. Just create your StreamField as usual, for example:
 

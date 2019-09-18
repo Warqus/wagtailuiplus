@@ -4,6 +4,9 @@ function updateStructBlockHeader(event) {
     return;
   }
   const headerLabel = field.closest('.sequence-member').querySelector('.sequence-controls > h3 > label');
+  if (headerLabel === null) {
+    return;
+  }
   if (!headerLabel.hasAttribute('data-original-text')) {
     headerLabel.dataset.originalText = headerLabel.innerText;
   }

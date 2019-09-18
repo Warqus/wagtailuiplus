@@ -22,10 +22,30 @@
   -o-transform: rotate(180deg);
   transform: rotate(180deg);
 }
+.sequence-container.sequence-type-stream > .sequence-container-inner > .sequence > .sequence-member > .sequence-controls,
+.sequence-container.sequence-type-stream > .sequence-container-inner > .sequence > .sequence-member > .sequence-controls > h3,
+.sequence-container.sequence-type-stream > .sequence-container-inner > .sequence > .sequence-member > .sequence-controls > h3 > label {
+  cursor: pointer;
+}
+.sequence-container.sequence-type-stream > .sequence-container-inner > .sequence > .sequence-member > .sequence-controls {
+  cursor: pointer;
+}
+.sequence-container.sequence-type-stream > .sequence-container-inner > .sequence > .sequence-member.wagtailuiplus__struct-block--collapsed > .sequence-member-inner {
+  padding-top: 0;
+  overflow: hidden;
+  height: 23px;
+}
+.sequence-container.sequence-type-stream > .sequence-container-inner > .sequence > .sequence-member.wagtailuiplus__struct-block--collapsed > .sequence-controls:before {
+  -webkit-transform:rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
 
 /* Stream field container */
 .object.block_field.stream-field > .object-layout > .object-layout_big-part > fieldset {
-  padding-top: 40px
+  padding-top: 40px;
 }
 .sequence-container.sequence-type-stream > .sequence-container-inner > .sequence > .sequence-member {
   margin-left: 18px;

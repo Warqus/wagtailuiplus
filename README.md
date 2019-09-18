@@ -5,13 +5,21 @@ This Wagtail app provides several ui improvements to the Wagtail editor interfac
 **Collapsable panels**
 - Click on the panel header to collapse/expand the panel
 - Set the default collapsed state
-- Supported panel types: `MultiFieldPanel` and `StreamFieldPanel`
+- Supported panels: `MultiFieldPanel` and `StreamFieldPanel`
 
-**StreamField UI improvements**
-- Added border around blocks
+**Stream field improvements**
+- Added borders around blocks
+- Added panel-style headers to blocks
 - Added spacing between blocks
 - Permanently visible add buttons
-- Use more of the available space for stream blocks
+- Use more of the available space for blocks
+- Supported blocks: `CharBlock`, `TextBlock`, `EmailBlock`, `IntegerBlock`, `FloatBlock`, `DecimalBlock`, `RegexBlock`, `URLBlock`, `BooleanBlock`, `DateBlock`, `TimeBlock`, `DateTimeBlock`, `RichTextBlock`, `RawHTMLBlock`, `BlockQuoteBlock`, `ChoiceBlock`, `PageChooserBlock`, `DocumentChooserBlock`, `ImageChooserBlock`, `SnippetChooserBlock`, `EmbedBlock`, `StaticBlock`, `StructBlock` and `StreamBlock`
+
+**Struct block improvements**
+- All of the above stream field improvements
+- If the first field in the struct block is a `CharBlock`, show it's value in the block header
+- Click on the block header to collapse/expand the struct block
+- All struct blocks are default collapsed on page load, but newly added blocks are default expanded
 
 ## Compatibility
 - Wagtail 2.5+

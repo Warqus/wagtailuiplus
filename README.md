@@ -1,6 +1,12 @@
 # Wagtail UI Plus
 
-This Wagtail app provides several ui improvements to the Wagtail editor interface.
+This Wagtail app provides several ui improvements to the Wagtail admin.
+
+**Conditional visibility**
+- Show or hide form fields based on conditional visibility rules
+- Target elements should be contained within the same `StructBlock` as the trigger element
+- Supported trigger elements: `ChoiceBlock`
+- Supported target elements: Any subclass of `FieldBlock`
 
 **Collapsable panels**
 - Click on the panel header to collapse/expand the panel
@@ -30,6 +36,53 @@ This Wagtail app provides several ui improvements to the Wagtail editor interfac
 - Add `wagtailuiplus` to your installed apps
 
 ## Usage
+
+**Conditional visibility**
+
+Steps to configure conditional visibility rules:
+- Add the class `wagtailuiplus__choice-handler` to the trigger element
+- Add the class `wagtailuiplus__choice-handler--{block_name}` to the trigger element, where `{block_name}` is equal to the block name of the trigger element
+- Add the class `wagtailuiplus__choice-handler-target--{block_name}` to each target element, where `{block_name}` is equal to the block name of the trigger element
+- Add conditional visibility rules to the target elements
+
+To hide a target element if the trigge field has a certain value:
+- Add the class `wagtailuiplus__choice-handler-hidden-if--{value}` to the target element, where `{value}` is the value of the trigger element
+
+
+Multiple rules on the same target element are treated as an `or`, so if any of the rules match, the element is hidden. In the following example, conditional visibility is used to show a page chooser when building an internal link, or show a text input when building an external link:
+
+```
+class LinkBlock(StructBlock):
+    link_type = ChoiceBlock(
+        choices = [
+            ('internal', 'Internal link'),
+            ('external', 'External link'),
+        ],
+        required=True,
+        default='internal',
+        label='Link type',
+        classname=(
+            'wagtailuiplus__choice-handler '
+            'wagtailuiplus__choice-handler--link_type'
+        )
+    )
+    link_page = PageChooserBlock(
+        required=False,
+        label='Link page',
+        classname=(
+            'wagtailuiplus__choice-handler-target--link_type '
+            'wagtailuiplus__choice-handler-hidden-if--external'
+        ),
+    )
+    link_url = CharBlock(
+        required=False,
+        label='Link url',
+        classname=(
+            'wagtailuiplus__choice-handler-target--link_type '
+            'wagtailuiplus__choice-handler-hidden-if--internal'
+        ),
+    )
+```
 
 **Collapsable panels**
 

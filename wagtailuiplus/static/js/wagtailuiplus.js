@@ -1,3 +1,52 @@
+// Event handler for choice blocks with conditional visibility
+function choiceHandler(target) {
+  const choiceHandler = target.closest('.wagtailuiplus__choice-handler');
+  if (choiceHandler !== null) {
+    const choiceHandlerValue = choiceHandler.querySelector('select').value;
+    const structBlockFields = choiceHandler.closest('ul.fields');
+    const choiceHandlerIdRegex = /wagtailuiplus__choice-handler--([a-zA-Z\-\_]+)/;
+    const choiceHandlerId = choiceHandlerIdRegex.exec(choiceHandler.className)[1];
+    const choiceHandlerTargets = structBlockFields.querySelectorAll('.wagtailuiplus__choice-handler-target--' + choiceHandlerId);
+    const hiddenIfRegex = /wagtailuiplus__choice-handler-hidden-if--([a-zA-Z\-\_]+)/g;
+    let hiddenIfValue;
+    let matches;
+    let hiddenIfs;
+    let hiddenIfIndex;
+    for (let j = 0; j < choiceHandlerTargets.length; j++) {
+      matches = hiddenIfRegex.exec(choiceHandlerTargets[j].className);
+      while (matches !== null) {
+        hiddenIfValue = matches[1];
+        choiceHandlerTargetContainer = choiceHandlerTargets[j].closest('li');
+        if (choiceHandlerValue === hiddenIfValue) {
+          if (choiceHandlerTargetContainer.hasAttribute('data-wagtailuiplus-hidden-ifs')) {
+            hiddenIfs = choiceHandlerTargetContainer.getAttribute('data-wagtailuiplus-hidden-ifs').split(',');
+            hiddenIfs.push(hiddenIfValue);
+            choiceHandlerTargetContainer.setAttribute('data-wagtailuiplus-hidden-ifs', hiddenIfs.join(','));
+          } else {
+            choiceHandlerTargetContainer.setAttribute('data-wagtailuiplus-hidden-ifs', hiddenIfValue);
+          }
+          if (!choiceHandlerTargetContainer.classList.contains('wagtailuiplus__choice-handler-target--hidden')) {
+            choiceHandlerTargetContainer.classList.add('wagtailuiplus__choice-handler-target--hidden');
+          }
+        } else if (choiceHandlerTargetContainer.hasAttribute('data-wagtailuiplus-hidden-ifs')) {
+          hiddenIfs = choiceHandlerTargetContainer.getAttribute('data-wagtailuiplus-hidden-ifs').split(',');
+          hiddenIfIndex = hiddenIfs.indexOf(hiddenIfValue);
+          if (hiddenIfIndex > -1) {
+            hiddenIfs.splice(hiddenIfIndex, 1);
+            if (hiddenIfs.length === 0) {
+              choiceHandlerTargetContainer.classList.remove('wagtailuiplus__choice-handler-target--hidden');
+              choiceHandlerTargetContainer.removeAttribute('data-wagtailuiplus-hidden-ifs');
+            } else {
+              choiceHandlerTargetContainer.setAttribute('data-wagtailuiplus-hidden-ifs', hiddenIfs.join(','));
+            }
+          }
+        }
+        matches = hiddenIfRegex.exec(choiceHandlerTargets[j].className);
+      }
+    }
+  }
+}
+
 function updateStructBlockHeader(event) {
   const field = event.target.closest('li');
   if (event.target.tagName !== 'INPUT' || field === null || field.previousElementSibling !== null) {
@@ -76,5 +125,18 @@ document.addEventListener('DOMContentLoaded', function() {
       // uncomment this to enable model choice field based headers, todo: update header on change of model choice
       // headerLabel.innerText = headerLabel.dataset.originalText + ' - ' + fields[0].querySelector('.chosen .title').innerText;
     }
+  }
+
+  // Bind the choice block event handler to all stream fields, so it applies to all existing and future choice blocks
+  for (i = 0; i < structBlockContainers.length; i++) {
+    structBlockContainers[i].addEventListener('change', function(event) {
+      choiceHandler(event.target);
+    });
+  }
+
+  // Trigger the choice block event handler for all existing choice blocks
+  const choiceHandlerSelects = document.querySelectorAll('.sequence-container.sequence-type-stream > .sequence-container-inner > .sequence .wagtailuiplus__choice-handler select');
+  for (i = 0; i < choiceHandlerSelects.length; i++) {
+    choiceHandler(choiceHandlerSelects[i]);
   }
 });

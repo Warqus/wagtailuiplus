@@ -3,10 +3,11 @@ from setuptools import setup
 
 setup(
     name='wagtailuiplus',
-    version='1.1.3',
+    version='1.2.2',
     description=(
         'This Wagtail app provides several ui improvements to the Wagtail '
-        'editor interface.'),
+        'admin.'
+    ),
     long_description=(pathlib.Path(__file__).parent / 'README.md').read_text(),
     long_description_content_type='text/markdown',
     url='https://github.com/david-conde/wagtailuiplus',

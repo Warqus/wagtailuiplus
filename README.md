@@ -45,7 +45,7 @@ Steps to configure conditional visibility rules:
 - Add the class `wagtailuiplus__choice-handler-target--{block_name}` to each target element, where `{block_name}` is equal to the block name of the trigger element
 - Add conditional visibility rules to the target elements
 
-To hide a target element if the trigge field has a certain value:
+To hide a target element if the trigger field has a certain value:
 - Add the class `wagtailuiplus__choice-handler-hidden-if--{value}` to the target element, where `{value}` is the value of the trigger element
 
 
@@ -84,6 +84,8 @@ class LinkBlock(StructBlock):
     )
 ```
 
+![Screenshot](https://raw.githubusercontent.com/davidcondenl/wagtailuiplus/master/examples/conditional-visibility.gif)
+
 **Collapsable panels**
 
 The panels automatically become collapsable. To set the initial collapsed state of panels, add the `wagtailuiplus__panel--collapsed` classname to the panel, for example:
@@ -97,7 +99,7 @@ class HomePage(Page):
     ]
 ```
 
-![Screenshot](https://raw.githubusercontent.com/davidcondenl/wagtailuiplus/master/screenshot1.png)
+![Screenshot](https://raw.githubusercontent.com/davidcondenl/wagtailuiplus/master/examples/collapsable-panels.png)
 
 **StreamField UI improvements**
 
@@ -154,4 +156,4 @@ class HomePage(Page):
         StreamFieldPanel('my_stream_field'),
     ]
 ```
-![Screenshot](https://raw.githubusercontent.com/davidcondenl/wagtailuiplus/master/screenshot2.png)
+![Screenshot](https://raw.githubusercontent.com/davidcondenl/wagtailuiplus/master/examples/streamfield-improvements.png)

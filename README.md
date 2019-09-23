@@ -4,9 +4,12 @@ This Wagtail app provides several ui improvements to the Wagtail admin.
 
 **Conditional visibility**
 - Show or hide form fields based on conditional visibility rules
-- Target elements should be contained within the same `StructBlock` as the trigger element
-- Supported trigger elements: `ChoiceBlock`
-- Supported target elements: Any subclass of `FieldBlock`
+- Regular page fields:
+  - Supported trigger elements: `CharField` (with choices)
+  - Supported target elements: Any subclass of `EditHandler` (on the same tab)
+- Struct block fields:
+  - Supported trigger elements: `ChoiceBlock`
+  - Supported target elements: Any subclass of `FieldBlock` (within the same struct block)
 
 **Collapsable panels**
 - Click on the panel header to collapse/expand the panel

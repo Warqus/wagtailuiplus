@@ -3,10 +3,19 @@ function choiceHandler(target) {
   const choiceHandler = target.closest('.wagtailuiplus__choice-handler');
   if (choiceHandler !== null) {
     const choiceHandlerValue = choiceHandler.querySelector('select').value;
-    const structBlockFields = choiceHandler.closest('ul.fields');
+
+    let searchContainer;
+    // If the chocie handler is a char field, search in the entire tab
+    if (choiceHandler.classList.contains('typed_choice_field')) {
+      searchContainer = choiceHandler.closest('section');
+    // Otherwise, if the choice handler is a choices block, search in the entire struct block
+    } else {
+       searchContainer = choiceHandler.closest('ul.fields');
+    }
+
     const choiceHandlerIdRegex = /wagtailuiplus__choice-handler--([a-zA-Z\-\_]+)/;
     const choiceHandlerId = choiceHandlerIdRegex.exec(choiceHandler.className)[1];
-    const choiceHandlerTargets = structBlockFields.querySelectorAll('.wagtailuiplus__choice-handler-target--' + choiceHandlerId);
+    const choiceHandlerTargets = searchContainer.querySelectorAll('.wagtailuiplus__choice-handler-target--' + choiceHandlerId);
     const hiddenIfRegex = /wagtailuiplus__choice-handler-hidden-if--([a-zA-Z\-\_]+)/g;
     let hiddenIfValue;
     let matches;
@@ -139,4 +148,36 @@ document.addEventListener('DOMContentLoaded', function() {
   for (i = 0; i < choiceHandlerSelects.length; i++) {
     choiceHandler(choiceHandlerSelects[i]);
   }
+
+  // Watch for new blocks being added to stream fields
+  const config = { attributes: false, childList: true, subtree: false };
+  const callback = function(mutations, observer) {
+      let k;
+      let l;
+      let choiceHandlerSelects;
+      for (let j = 0; j < mutations.length; j++) {
+        for (k = 0; k < mutations[j].addedNodes.length; k++) {
+          // Make sure the choice handler is run for each new choice block
+          choiceHandlerSelects = mutations[j].addedNodes[k].querySelectorAll('.wagtailuiplus__choice-handler select');
+          for (l = 0; l < choiceHandlerSelects.length; l++) {
+            choiceHandler(choiceHandlerSelects[l]);
+          }
+        }
+      }
+  };
+  let observer;
+  for (i = 0; i < structBlockContainers.length; i++) {
+    observer = new MutationObserver(callback);
+    observer.observe(structBlockContainers[i], config);
+  }
+
+  // Bind the char field choice event handlers, and trigger it once
+  const choiceHandlersCharFieldSelects = document.querySelectorAll('li.wagtailuiplus__choice-handler select');
+  for (i = 0; i < choiceHandlersCharFieldSelects.length; i++) {
+    choiceHandlersCharFieldSelects[i].addEventListener('change', function(event) {
+      choiceHandler(event.target);
+    });
+    choiceHandler(choiceHandlersCharFieldSelects[i]);
+  }
+
 });

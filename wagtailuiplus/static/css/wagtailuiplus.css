@@ -126,7 +126,7 @@
   opacity: 1;
   visibility: visible;
   position: relative;
-  top: 12px;
+  top: 13px;
 }
 .sequence-container.sequence-type-stream > .sequence-container-inner > .sequence > .sequence-member > .stream-menu > .toggle {
   background-color: #fff;

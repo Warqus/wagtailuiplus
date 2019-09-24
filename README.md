@@ -31,7 +31,7 @@ This Wagtail app provides several ui improvements to the Wagtail admin.
 - All struct blocks are default collapsed on page load, but newly added blocks are default expanded
 
 ## Compatibility
-- Wagtail 2.5+
+- Wagtail 2.6.2
 
 ## Installation
 

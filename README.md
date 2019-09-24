@@ -2,6 +2,13 @@
 
 This Wagtail app provides several ui improvements to the Wagtail admin.
 
+**Conditional checkboxes**
+- Automatically check a target checkbox whenever a trigger checkbox is checked
+- The reverse also applies, when the target checkbox is unchecked, the trigger checkbox is also unchecked
+- This functionality can be used to create an "all" option among a list of checkboxes
+- Supported trigger elements: `BooleanField`
+- Supported target elements: `BooleanField` (on the same tab)
+
 **Conditional visibility**
 - Show or hide form fields based on conditional visibility rules
 - Regular page fields:
@@ -39,6 +46,17 @@ This Wagtail app provides several ui improvements to the Wagtail admin.
 - Add `wagtailuiplus` to your installed apps
 
 ## Usage
+
+**Conditional checkboxes**
+- Add the class `wagtailuiplus__checkbox-handler` to the trigger element
+- Add the class `wagtailuiplus__checkbox-handler--{block_name}` to the trigger element, where `{block_name}` is equal to the block name of the trigger element
+- Add the class `wagtailuiplus__checkbox-handler-target--{block_name}` to each target element, where `{block_name}` is equal to the block name of the trigger element
+- Add conditional visibility rules to the target elements
+
+To check a target checkbox when the trigger field is checked:
+- Add the class `wagtailuiplus__checkbox-handler-checked-if--checked` to the target element
+
+![Screenshot](https://raw.githubusercontent.com/davidcondenl/wagtailuiplus/master/examples/conditional-checkboxes.gif)
 
 **Conditional visibility**
 

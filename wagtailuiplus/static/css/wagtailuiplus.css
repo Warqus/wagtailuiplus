@@ -4,10 +4,10 @@
 }
 
 /* Collapsable panels */
-.object > h2 {
+.object > .title-wrapper {
   cursor: pointer;
 }
-.object > h2 > label {
+.object > .title-wrapper > label {
   cursor: pointer;
 }
 .object.wagtailuiplus__panel--collapsed {
@@ -19,8 +19,8 @@
 .object.wagtailuiplus__panel--collapsed > .object-layout {
   display: none ;
 }
-.object.wagtailuiplus__panel--collapsed > h2 label:before,
-.object.wagtailuiplus__panel--collapsed > h2:before {
+.object.wagtailuiplus__panel--collapsed > .title-wrapper label:before,
+.object.wagtailuiplus__panel--collapsed > .title-wrapper:before {
   -webkit-transform:rotate(180deg);
   -moz-transform: rotate(180deg);
   -ms-transform: rotate(180deg);
@@ -67,7 +67,7 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 43px;
+  height: 44px;
   background-color: #fcf2f2;
   opacity: 1;
   visibility: visible;

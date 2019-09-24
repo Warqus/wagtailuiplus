@@ -56,6 +56,7 @@ function choiceHandler(target) {
   }
 }
 
+// Make the title bar of a struct block show the title of the first char block
 function updateStructBlockHeader(event) {
   const field = event.target.closest('li');
   if (event.target.tagName !== 'INPUT' || field === null || field.previousElementSibling !== null) {
@@ -71,11 +72,40 @@ function updateStructBlockHeader(event) {
   headerLabel.innerText = headerLabel.dataset.originalText + ' - ' + event.target.value;
 }
 
+// Event handler for checkboxes with interactivity
+function checkboxHandler(checkboxHandler) {
+  const isChecked = checkboxHandler.checked;
+  searchContainer = checkboxHandler.closest('section');
+  const checkboxHandlerIdRegex = /wagtailuiplus__checkbox-handler--([a-zA-Z\-\_]+)/;
+  const checkboxHandlerId = checkboxHandlerIdRegex.exec(checkboxHandler.closest('.wagtailuiplus__checkbox-handler').className)[1];
+  const checkboxHandlerTargets = searchContainer.querySelectorAll('.wagtailuiplus__checkbox-handler-target--' + checkboxHandlerId + '.wagtailuiplus__checkbox-handler-checked-if--checked input[type=checkbox]');
+  if (isChecked) {
+    for (let i = 0; i < checkboxHandlerTargets.length; i++) {
+      if (!checkboxHandlerTargets[i].checked) {
+        checkboxHandlerTargets[i].checked = true;
+      }
+    }
+  }
+}
+
+// Event handler for checkboxes with interactivity - Reverse dependency
+function checkboxHandlerTarget(checkboxHandlerTarget) {
+  const isChecked = checkboxHandlerTarget.checked;
+  if (isChecked) {
+    return;
+  }
+  searchContainer = checkboxHandlerTarget.closest('section');
+  const checkboxHandlerTargetIdRegex = /wagtailuiplus__checkbox-handler-target--([a-zA-Z\-\_]+)/;
+  const checkboxHandlerTargetId = checkboxHandlerTargetIdRegex.exec(checkboxHandlerTarget.closest('li').className)[1];
+  const checkboxHandler = searchContainer.querySelector('.wagtailuiplus__checkbox-handler--' + checkboxHandlerTargetId + ' input[type=checkbox]');
+  checkboxHandler.checked = false;
+}
+
 document.addEventListener('DOMContentLoaded', function() {
 
   // Make the panels collapsable
   let i;
-  const panelHeaders = document.querySelectorAll('.object > h2');
+  const panelHeaders = document.querySelectorAll('.object > .title-wrapper');
   for (i = 0; i < panelHeaders.length; i++) {
     panelHeaders[i].addEventListener('click', function() {
       if (this.parentElement.classList.contains('wagtailuiplus__panel--collapsed')) {
@@ -180,4 +210,21 @@ document.addEventListener('DOMContentLoaded', function() {
     choiceHandler(choiceHandlersCharFieldSelects[i]);
   }
 
+  // Bind the checkbox handler for interactive checkboxes
+  const checkboxHandlerInputs = document.querySelectorAll('li.wagtailuiplus__checkbox-handler input[type=checkbox]');
+  for (i = 0; i < checkboxHandlerInputs.length; i++) {
+    checkboxHandlerInputs[i].addEventListener('change', function(event) {
+      checkboxHandler(event.target);
+    });
+    checkboxHandler(checkboxHandlerInputs[i]);
+  }
+
+  // Bind the checkbox handler targets for interactive checkboxes - reverse dependency
+  const checkboxHandlerTargetInputs = document.querySelectorAll('li[class^="wagtailuiplus__checkbox-handler-target--"] input[type=checkbox], li[class*=" wagtailuiplus__checkbox-handler-target--"] input[type=checkbox]');
+  for (i = 0; i < checkboxHandlerTargetInputs.length; i++) {
+    checkboxHandlerTargetInputs[i].addEventListener('change', function(event) {
+      checkboxHandlerTarget(event.target);
+    });
+    checkboxHandlerTarget(checkboxHandlerTargetInputs[i]);
+  }
 });

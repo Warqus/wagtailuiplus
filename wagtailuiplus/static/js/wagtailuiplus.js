@@ -67,6 +67,9 @@ function onCheckboxHandlerChange(checkboxHandler) {
     for (let i = 0; i < checkboxHandlerTargets.length; i++) {
       if (!checkboxHandlerTargets[i].checked) {
         checkboxHandlerTargets[i].checked = true;
+        if (checkboxHandlerTargets[i].closest('li.boolean_field').classList.contains('wagtailuiplus__checkbox-handler')) {
+          onCheckboxHandlerChange(checkboxHandlerTargets[i]);
+        }
       }
     }
   }
@@ -83,6 +86,10 @@ function onCheckboxHandlerTargetChange(checkboxHandlerTarget) {
   const checkboxHandlerTargetId = checkboxHandlerTargetIdRegex.exec(checkboxHandlerTarget.closest('li').className)[1];
   const checkboxHandler = searchContainer.querySelector('.wagtailuiplus__checkbox-handler--' + checkboxHandlerTargetId + ' input[type=checkbox]');
   checkboxHandler.checked = false;
+  checkboxHandlerParent = checkboxHandler.closest('li.boolean_field');
+  if (checkboxHandlerTargetIdRegex.test(checkboxHandlerParent.classList)) {
+    onCheckboxHandlerTargetChange(checkboxHandler);
+  }
 }
 
 

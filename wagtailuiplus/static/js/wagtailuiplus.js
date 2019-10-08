@@ -2,7 +2,12 @@
 function onChoiceHandlerChange(target) {
   const choiceHandler = target.closest('.wagtailuiplus__choice-handler');
   if (choiceHandler !== null) {
-    const choiceHandlerValue = choiceHandler.querySelector('select').value;
+    let choiceHandlerValue;
+    if (choiceHandler.classList.contains('boolean_field')) {
+      choiceHandlerValue = choiceHandler.querySelector('input[type=checkbox]').checked ? 'true' : 'false';
+    } else {
+      choiceHandlerValue = choiceHandler.querySelector('select').value;
+    }
 
     let searchContainer;
     // If the chocie handler is a char field, search in the entire tab
@@ -244,11 +249,18 @@ document.addEventListener('DOMContentLoaded', function() {
     onChoiceHandlerChange(choiceHandlerSelects[i]);
   }
 
-  // Initialize choice handlers not contained in stream fields
+  // Initialize choice handler for selectboxes not contained in stream fields
   const choiceHandlersCharFieldSelects = document.querySelectorAll('li.wagtailuiplus__choice-handler select');
   for (i = 0; i < choiceHandlersCharFieldSelects.length; i++) {
     initChoiceHandler(choiceHandlersCharFieldSelects[i]);
     onChoiceHandlerChange(choiceHandlersCharFieldSelects[i]);
+  }
+
+  // Initialize choice handler for checkboxes not contained in stream fields
+  const choiceHandlersCharFieldInputs = document.querySelectorAll('li.wagtailuiplus__choice-handler input[type=checkbox]');
+  for (i = 0; i < choiceHandlersCharFieldInputs.length; i++) {
+    initChoiceHandler(choiceHandlersCharFieldInputs[i]);
+    onChoiceHandlerChange(choiceHandlersCharFieldInputs[i]);
   }
 
   // Initialize checkbox handlers

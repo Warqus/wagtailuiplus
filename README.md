@@ -12,7 +12,7 @@ This Wagtail app provides several ui improvements to the Wagtail admin.
 **Conditional visibility**
 - Show or hide form fields based on conditional visibility rules
 - Regular page fields:
-  - Supported trigger elements: `CharField` (with choices)
+  - Supported trigger elements: `CharField` (with choices), `BooleanField`
   - Supported target elements: Any subclass of `EditHandler` (on the same tab)
 - Struct block fields:
   - Supported trigger elements: `ChoiceBlock`
@@ -70,7 +70,7 @@ To hide a target element if the trigger field has a certain value:
 - Add the class `wagtailuiplus__choice-handler-hidden-if--{value}` to the target element, where `{value}` is the value of the trigger element
 
 
-Multiple rules on the same target element are treated as an `or`, so if any of the rules match, the element is hidden. In the following example, conditional visibility is used to show a page chooser when building an internal link, or show a text input when building an external link:
+To match the values of a `BooleanField`, use the string value `true` or `false`. Multiple rules on the same target element are treated as an `or`, so if any of the rules match, the element is hidden. In the following example, conditional visibility is used to show a page chooser when building an internal link, or show a text input when building an external link:
 
 ```
 class LinkBlock(StructBlock):

@@ -139,6 +139,8 @@ function initSmartStructBlockHeader(structBlockContainer) {
 
   let fields;
   let headerLabel;
+  let textElement;
+  let titleText;
   const structBlocks = structBlockContainer.children;
   for (i = 0; i < structBlocks.length; i++) {
     if (!structBlocks[i].classList.contains('sequence-member')) {
@@ -154,7 +156,34 @@ function initSmartStructBlockHeader(structBlockContainer) {
     if (fields[0].classList.contains('char_field')) {
       // Set the initial collapsed state and set the header smart title based on the char block value
       structBlocks[i].classList.add('wagtailuiplus__struct-block--collapsed');
-      headerLabel.innerText = headerLabel.dataset.originalText + ' - ' + fields[0].querySelector('input[type=text]').value;
+
+      // Try to get the title value from a char field
+      titleText = null;
+      textElement = fields[0].querySelector('input[type=text]');
+      if (textElement !== null) {
+        titleText = textElement.value;
+
+      }
+
+      // Otherwise, try to get the title value from a textfield
+      if (titleText === null) {
+        textElement = fields[0].querySelector('textarea');
+        if (textElement !== null) {
+          titleText = textElement.value;
+        }
+      }
+
+      // Otherwise, try to get the title value from a draftail editor
+      if (titleText === null) {
+        textElement = fields[0].querySelector('.DraftEditor-root');
+        if (textElement !== null) {
+          titleText = textElement.innerText;
+        }
+      }
+
+      if (titleText !== null) {
+        headerLabel.innerText = headerLabel.dataset.originalText + ' - ' +  titleText;
+      }
     }
   }
 }

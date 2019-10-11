@@ -33,7 +33,7 @@ This Wagtail app provides several ui improvements to the Wagtail admin.
 
 **Struct block improvements**
 - All of the above stream field improvements
-- If the first field in the struct block is a `CharBlock`, show it's value in the block header
+- If the first field in the struct block is a `CharBlock`, `TextBlock` or `RichtTextBlock`, show it's value in the block header after the block type
 - Click on the block header to collapse/expand the struct block
 - All struct blocks are default collapsed on page load, but newly added blocks are default expanded
 

@@ -76,7 +76,9 @@
 .sequence-container.sequence-type-stream > .sequence-container-inner > .sequence > .sequence-member > .sequence-controls > h3 {
   position: absolute;
   left: 0;
-  top: 6px;
+  top: 0;
+  width: 100%;
+  height: 43px;
 }
 .sequence-container.sequence-type-stream > .sequence-container-inner > .sequence > .sequence-member > .sequence-controls > h3 > label {
   color: #200200;
@@ -85,6 +87,13 @@
   font-size: 12.16px;
   line-height: 16px;
   font-weight: 400;
+  top: 12px;
+  left: 0;
+  right: 120px;
+  position: absolute;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .sequence-container.sequence-type-stream > .sequence-container-inner > .sequence > .sequence-member > .sequence-controls:before {
   -webkit-font-smoothing: antialiased;

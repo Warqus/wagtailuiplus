@@ -18,10 +18,10 @@ function onChoiceHandlerChange(target) {
        searchContainer = choiceHandler.closest('ul.fields');
     }
 
-    const choiceHandlerIdRegex = /wagtailuiplus__choice-handler--([a-zA-Z\-\_]+)/;
+    const choiceHandlerIdRegex = /wagtailuiplus__choice-handler--([a-zA-Z\-\_\d]+)/;
     const choiceHandlerId = choiceHandlerIdRegex.exec(choiceHandler.className)[1];
     const choiceHandlerTargets = searchContainer.querySelectorAll('.wagtailuiplus__choice-handler-target--' + choiceHandlerId);
-    const hiddenIfRegex = /wagtailuiplus__choice-handler-hidden-if--([a-zA-Z\-\_]+)/g;
+    const hiddenIfRegex = /wagtailuiplus__choice-handler-hidden-if--([a-zA-Z\-\_\d]+)/g;
     let hiddenIfValue;
     let matches;
     let hiddenIfs;

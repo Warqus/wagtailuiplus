@@ -34,7 +34,9 @@ function onChoiceHandlerChange(target) {
         if (choiceHandlerValue === hiddenIfValue) {
           if (choiceHandlerTargetContainer.hasAttribute('data-wagtailuiplus-hidden-ifs')) {
             hiddenIfs = choiceHandlerTargetContainer.getAttribute('data-wagtailuiplus-hidden-ifs').split(',');
-            hiddenIfs.push(hiddenIfValue);
+            if (!hiddenIfs.includes(hiddenIfValue)) {
+              hiddenIfs.push(hiddenIfValue);
+            }
             choiceHandlerTargetContainer.setAttribute('data-wagtailuiplus-hidden-ifs', hiddenIfs.join(','));
           } else {
             choiceHandlerTargetContainer.setAttribute('data-wagtailuiplus-hidden-ifs', hiddenIfValue);

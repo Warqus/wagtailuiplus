@@ -232,7 +232,7 @@ function onNewStructBlock(mutations, observer) {
     for (let j = 0; j < mutations.length; j++) {
       for (k = 0; k < mutations[j].addedNodes.length; k++) {
         // Make sure the choice handler is run for each new choice block
-        choiceHandlerSelects = mutations[j].addedNodes[k].querySelectorAll('.wagtailuiplus__choice-handler select');
+        choiceHandlerSelects = mutations[j].addedNodes[k].querySelectorAll('.wagtailuiplus__choice-handler select, .wagtailuiplus__choice-handler input[type=checkbox]');
         for (l = 0; l < choiceHandlerSelects.length; l++) {
           onChoiceHandlerChange(choiceHandlerSelects[l]);
         }

@@ -10,8 +10,8 @@ function onChoiceHandlerChange(target) {
     }
 
     let searchContainer;
-    // If the chocie handler is a char field, search in the entire tab
-    if (choiceHandler.classList.contains('typed_choice_field')) {
+    // If the chocie handler is a char field or boolean field, search in the entire tab
+    if (choiceHandler.classList.contains('typed_choice_field') || choiceHandler.classList.contains('boolean_field')) {
       searchContainer = choiceHandler.closest('section');
     // Otherwise, if the choice handler is a choices block, search in the entire struct block
     } else {

@@ -196,3 +196,8 @@
   position: relative;
   z-index: 1;
 }
+
+/* Initially hide elements */
+.wagtailuiplus__initially-hidden {
+  display: none;
+}

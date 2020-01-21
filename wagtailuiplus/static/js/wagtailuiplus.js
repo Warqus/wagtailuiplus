@@ -307,4 +307,10 @@ document.addEventListener('DOMContentLoaded', function() {
     initCheckboxHandlerTarget(checkboxHandlerTargetInputs[i]);
     onCheckboxHandlerTargetChange(checkboxHandlerTargetInputs[i]);
   }
+
+  // Remove the class that initially hides elements after Wagtailuiplus has been fully initialized
+  const initiallyHiddenElements = document.querySelectorAll('.wagtailuiplus__initially-hidden');
+  for (i = 0; i < initiallyHiddenElements.length; i++) {
+    initiallyHiddenElements[i].classList.remove('wagtailuiplus__initially-hidden');
+  }
 });

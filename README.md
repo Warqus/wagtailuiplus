@@ -7,13 +7,13 @@ This Wagtail app provides several ui improvements to the Wagtail admin.
 - The reverse also applies, when the target checkbox is unchecked, the trigger checkbox is also unchecked
 - This functionality can be used to create an "all" option among a list of checkboxes
 - Supported trigger elements: `BooleanField`
-- Supported target elements: `BooleanField` (on the same tab)
+- Supported target elements: `BooleanField`
 
 **Conditional visibility**
 - Show or hide form fields based on conditional visibility rules
 - Regular page fields:
   - Supported trigger elements: `CharField` (with choices), `BooleanField`
-  - Supported target elements: Any subclass of `EditHandler` (on the same tab)
+  - Supported target elements: Any subclass of `EditHandler`
 - Struct block fields:
   - Supported trigger elements: `ChoiceBlock`
   - Supported target elements: Any subclass of `FieldBlock` (within the same struct block)

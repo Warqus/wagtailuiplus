@@ -10,9 +10,9 @@ function onChoiceHandlerChange(target) {
     }
 
     let searchContainer;
-    // If the chocie handler is a char field or boolean field, search in the entire tab
+    // If the chocie handler is a char field or boolean field, search in the entire edit form
     if (choiceHandler.classList.contains('typed_choice_field') || choiceHandler.classList.contains('boolean_field')) {
-      searchContainer = choiceHandler.closest('section');
+      searchContainer = choiceHandler.closest('.tab-content');
     // Otherwise, if the choice handler is a choices block, search in the entire struct block
     } else {
        searchContainer = choiceHandler.closest('ul.fields');
@@ -66,7 +66,7 @@ function onChoiceHandlerChange(target) {
 // Event handler for checkboxes with interactivity
 function onCheckboxHandlerChange(checkboxHandler) {
   const isChecked = checkboxHandler.checked;
-  searchContainer = checkboxHandler.closest('section');
+  searchContainer = checkboxHandler.closest('.tab-content');
   const checkboxHandlerIdRegex = /wagtailuiplus__checkbox-handler--([a-zA-Z\-\_]+)/;
   const checkboxHandlerId = checkboxHandlerIdRegex.exec(checkboxHandler.closest('.wagtailuiplus__checkbox-handler').className)[1];
   const checkboxHandlerTargets = searchContainer.querySelectorAll('.wagtailuiplus__checkbox-handler-target--' + checkboxHandlerId + '.wagtailuiplus__checkbox-handler-checked-if--checked input[type=checkbox]');
@@ -88,7 +88,7 @@ function onCheckboxHandlerTargetChange(checkboxHandlerTarget) {
   if (isChecked) {
     return;
   }
-  searchContainer = checkboxHandlerTarget.closest('section');
+  searchContainer = checkboxHandlerTarget.closest('.tab-content');
   const checkboxHandlerTargetIdRegex = /wagtailuiplus__checkbox-handler-target--([a-zA-Z\-\_]+)/;
   const checkboxHandlerTargetId = checkboxHandlerTargetIdRegex.exec(checkboxHandlerTarget.closest('li').className)[1];
   const checkboxHandler = searchContainer.querySelector('.wagtailuiplus__checkbox-handler--' + checkboxHandlerTargetId + ' input[type=checkbox]');

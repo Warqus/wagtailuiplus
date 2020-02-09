@@ -12,7 +12,7 @@ function onChoiceHandlerChange(target) {
     let searchContainer;
     // If the chocie handler is a char field or boolean field, search in the entire edit form
     if (choiceHandler.classList.contains('typed_choice_field') || choiceHandler.classList.contains('boolean_field')) {
-      searchContainer = choiceHandler.closest('.tab-content');
+      searchContainer = choiceHandler.closest('form');
     // Otherwise, if the choice handler is a choices block, search in the entire struct block
     } else {
        searchContainer = choiceHandler.closest('ul.fields');
